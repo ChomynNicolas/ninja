@@ -1,26 +1,41 @@
 class ninja {
-  constructor(nombre, salud) {
-    (this.nombre = nombre),
-      (this.salud = salud),
-      (this.velocidad = 3),
-      (this.fuerza = 3);
+  constructor(nombre, salud = 100, velocidad = 3, fuerza = 3) {
+    this.nombre = nombre;
+    this.salud = salud;
+    this.velocidad = velocidad;
+    this.fuerza = fuerza;
   }
 
   sayname() {
     console.log(this.nombre);
   }
   showstats() {
-    console.log(`Nombre: ${this.nombre}| Salud: ${this.salud}| Velocidad: ${this.velocidad}| Fuerza: ${this.fuerza}`);
+    console.log(
+      `Nombre: ${this.nombre}| Salud: ${this.salud}| Velocidad: ${this.velocidad}| Fuerza: ${this.fuerza}`
+    );
   }
-  drinkSake(){
-    this.salud +=10;
+  drinkSake() {
+    this.salud += 10;
   }
 }
 
+class sensei extends ninja {
+  constructor(nombre) {
+    super(nombre, 200, 10, 10);
+    this.sabiduria = 10;
+  }
 
-const ninja1 = new ninja("Ninjaman",20);
+  speakWisdom() {
+    super.drinkSake();
+    console.log(
+      "Lo que un programador puede hacer en un mes, dos programadores pueden hacerlo en dos meses."
+    );
+  }
+}
 
-ninja1.sayname();
-ninja1.showstats();
-ninja1.drinkSake();
-ninja1.showstats();
+const AkiraSensei = new sensei("Sasami");
+
+AkiraSensei.showstats();
+
+AkiraSensei.speakWisdom();
+AkiraSensei.showstats();
